@@ -249,6 +249,152 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/07/Go-Rot13Reader实现/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="uzck">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="何度でも">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/07/Go-Rot13Reader实现/" itemprop="url">Go Rot13Reader实现</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-07T22:47:36+08:00">
+                2018-10-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Go/" itemprop="url" rel="index">
+                    <span itemprop="name">Go</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h2><p>对于已经读入的一个加密的字符串，按照<a href="https://en.wikipedia.org/wiki/ROT13" target="_blank" rel="noopener">rot13</a>的规则转换得到原文</p>
+<h2 id="rot13"><a href="#rot13" class="headerlink" title="rot13"></a>rot13</h2><p>rot13规则是指如果遇到a-m，加13把范围变成m-z，遇到m-z则刚好相反，因此只需要对字符串逐位套用rot13的规则即可</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>定义的rot13Reader结构，也只是裹了一层io.Reader</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> rot13Reader <span class="keyword">struct</span> &#123;</span><br><span class="line">    reader io.Reader</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实现<strong>Read</strong>方法</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(convert rot13Reader)</span> <span class="title">Read</span><span class="params">(b []<span class="keyword">byte</span>)</span> <span class="params">(n <span class="keyword">int</span>, err error)</span></span> &#123;</span><br><span class="line">    <span class="comment">// 读取数据到byte[] b中</span></span><br><span class="line">    <span class="comment">// n表示读取的长度， err用来判断是否出现io错误</span></span><br><span class="line">    n, err = convert.reader.Read(b)  <span class="comment">// n, err在方法上定义过了 因此不用:=</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(b); i++ &#123;</span><br><span class="line">		<span class="keyword">if</span> (b[i] &lt;= <span class="string">'M'</span> &amp;&amp; b[i] &gt;= <span class="string">'A'</span>) || (b[i] &lt;= <span class="string">'m'</span> &amp;&amp; b[i] &gt;= <span class="string">'a'</span>) &#123;</span><br><span class="line">			b[i] = b[i] + <span class="number">13</span></span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (b[i] &lt;= <span class="string">'Z'</span> &amp;&amp; b[i] &gt;= <span class="string">'N'</span>) || (b[i] &lt;= <span class="string">'z'</span> &amp;&amp; b[i] &gt;= <span class="string">'n'</span>) &#123;</span><br><span class="line">			b[i] = b[i] - <span class="number">13</span></span><br><span class="line">		&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> n, err</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/25/【bug记录】JSP出现curl解析错误的问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -730,7 +876,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -752,7 +898,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
