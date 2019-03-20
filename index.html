@@ -249,6 +249,153 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/20/LeetCode739-Daily-Temperatures/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="uzck">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="何度でも">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/20/LeetCode739-Daily-Temperatures/" itemprop="url">LeetCode739 Daily Temperatures</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-20T21:11:45+08:00">
+                2019-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据结构与算法/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构与算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给出连续若干天的气温数据如<code>[73, 74, 75, 71, 69, 72, 76, 73]</code>，输出多少天后气温会高于当天，上面例子的输出结果为<code>[1, 1, 4, 2, 1, 1, 0, 0]</code>。温度的范围从30到100，数据长度1到30000。</p>
+<h2 id="蒟蒻的解法"><a href="#蒟蒻的解法" class="headerlink" title="蒟蒻的解法"></a>蒟蒻的解法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] dailyTemperatures(<span class="keyword">int</span>[] T) &#123;</span><br><span class="line">	<span class="keyword">int</span>[] result = <span class="keyword">new</span> <span class="keyword">int</span>[T.length];  <span class="comment">// 存储最后结果</span></span><br><span class="line">    <span class="comment">// tempData在搜索比自身大的数可以按顺序搜索</span></span><br><span class="line">    <span class="keyword">int</span>[] tempData = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">71</span>]; <span class="comment">// 长度71是因为数据范围是30-100，里面存储每个数最近一次出现时的下标</span></span><br><span class="line">    <span class="keyword">int</span>[] resultCopy = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">71</span>]; <span class="comment">// 存储对应数据的结果值</span></span><br><span class="line">    <span class="comment">// 初始化</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; tempData.length; i++) &#123;</span><br><span class="line">        tempData[i] = -<span class="number">1</span>;</span><br><span class="line">        resultCopy[i] = -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; T.length; i++) &#123;</span><br><span class="line">        <span class="comment">// 如果该数值还未在tempData中出现过</span></span><br><span class="line">        <span class="keyword">if</span> (tempData[T[i] - <span class="number">30</span>] &lt;  i)  &#123;</span><br><span class="line">            tempData[T[i] - <span class="number">30</span>] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 处理大多数数字相同的情况[76,76.......]，没添加的时候超时了(真滴菜)</span></span><br><span class="line">        <span class="keyword">if</span> (resultCopy[T[i] - <span class="number">30</span>] == <span class="number">0</span>) &#123;</span><br><span class="line">            result[i] = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 找到相同数值的数的结果，如果大于当前值的下标时，将其作为搜索时的终止条件</span></span><br><span class="line">        <span class="keyword">if</span> (resultCopy[T[i]- <span class="number">30</span>] &gt; i) &#123;</span><br><span class="line">            result[i] = resultCopy[T[i] - <span class="number">30</span>] - i;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 如果该数值之前没有出现过,从这个数的位置到tempData末端寻找之前出现过大于它且下标也大于它的最近的数</span></span><br><span class="line">        <span class="comment">// -1表示不存在</span></span><br><span class="line">        <span class="keyword">int</span> getBigNumIndex = getBiggerNum(tempData, T[i], i, tempData.length - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span> (getBigNumIndex != -<span class="number">1</span>) &#123;</span><br><span class="line">            result[i] = getBigNumIndex - i;</span><br><span class="line">            resultCopy[T[i] - <span class="number">30</span>] = getBigNumIndex;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 不存在的情况下去原数组往后搜索第一个大于该数的值的下标作为结果</span></span><br><span class="line">            <span class="keyword">boolean</span> findBig = <span class="keyword">false</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; T.length; j++) &#123;</span><br><span class="line">                tempData[T[j] - <span class="number">30</span>] = j;</span><br><span class="line">                <span class="keyword">if</span> (T[j] &gt; T[i]) &#123;</span><br><span class="line">                    result[i] = j - i;</span><br><span class="line">                    resultCopy[T[i] - <span class="number">30</span>] = j;</span><br><span class="line">                    findBig = <span class="keyword">true</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 没找到比它大的置0</span></span><br><span class="line">            <span class="keyword">if</span> (!findBig) &#123;</span><br><span class="line">            	result[i] = <span class="number">0</span>;</span><br><span class="line">                resultCopy[T[i] - <span class="number">30</span>] = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 在source中的start和end范围内找最近的比target大的数</span></span><br><span class="line"><span class="comment">**/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getBiggerNum</span><span class="params">(<span class="keyword">int</span>[] source, <span class="keyword">int</span> target, <span class="keyword">int</span> start, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> minMax = -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = target - <span class="number">30</span>; i &lt;= end; i++) &#123;</span><br><span class="line">    	<span class="keyword">if</span> (source[i] &gt; start) &#123;</span><br><span class="line">        	<span class="keyword">if</span> (minMax &gt; source[i]) &#123;</span><br><span class="line">            	minMax = source[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> minMax;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/20/LeetCode739-Daily-Temperatures/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/10/LeetCode-Problem654/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1591,154 +1738,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/27/【SpringMVC】上传并显示图片/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="uzck">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="何度でも">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/27/【SpringMVC】上传并显示图片/" itemprop="url">【SpringMVC】上传并显示图片</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-27T16:01:09+08:00">
-                2018-10-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spring/" itemprop="url" rel="index">
-                    <span itemprop="name">Spring</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Spring配置文件上传功能"><a href="#Spring配置文件上传功能" class="headerlink" title="Spring配置文件上传功能"></a>Spring配置文件上传功能</h2><h3 id="基于Servelt的配置"><a href="#基于Servelt的配置" class="headerlink" title="基于Servelt的配置"></a>基于Servelt的配置</h3><p>在继承了AbstractAnnotationConfigDispatcherServletInitializer的类中重写<strong>customizeRegistration</strong>方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">customizeRegistration</span><span class="params">(ServletRegistration.Dynamic registration)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// F:/tmp/是用于临时存储上传文件的地方</span></span><br><span class="line">	registration.setMultipartConfig(<span class="keyword">new</span> MultipartConfigElement(<span class="string">"F:/tmp/"</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这里只是一个比较简单的例子，实际上MultipartConfigElement的构造器还能指定上传文件的最大值，最大的请求值，文件的最小值。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/27/【SpringMVC】上传并显示图片/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1789,7 +1788,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
