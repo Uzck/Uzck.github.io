@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="LeetCode,Stack," />
+  <meta name="keywords" content="Stack,LeetCode," />
 
 
 
@@ -80,14 +80,14 @@
 
 
 <meta name="description" content="题目描述给出连续若干天的气温数据如[73, 74, 75, 71, 69, 72, 76, 73]，输出多少天后气温会高于当天，上面例子的输出结果为[1, 1, 4, 2, 1, 1, 0, 0]。温度的范围从30到100，数据长度1到30000。 蒟蒻的解法1234567891011121314151617181920212223242526272829303132333435363738394">
-<meta name="keywords" content="LeetCode,Stack">
+<meta name="keywords" content="Stack,LeetCode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode739 Daily Temperatures">
 <meta property="og:url" content="http://yoursite.com/2019/03/20/LeetCode739-Daily-Temperatures/index.html">
 <meta property="og:site_name" content="何度でも">
 <meta property="og:description" content="题目描述给出连续若干天的气温数据如[73, 74, 75, 71, 69, 72, 76, 73]，输出多少天后气温会高于当天，上面例子的输出结果为[1, 1, 4, 2, 1, 1, 0, 0]。温度的范围从30到100，数据长度1到30000。 蒟蒻的解法1234567891011121314151617181920212223242526272829303132333435363738394">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-20T13:56:53.443Z">
+<meta property="og:updated_time" content="2019-03-20T14:01:44.928Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode739 Daily Temperatures">
 <meta name="twitter:description" content="题目描述给出连续若干天的气温数据如[73, 74, 75, 71, 69, 72, 76, 73]，输出多少天后气温会高于当天，上面例子的输出结果为[1, 1, 4, 2, 1, 1, 0, 0]。温度的范围从30到100，数据长度1到30000。 蒟蒻的解法1234567891011121314151617181920212223242526272829303132333435363738394">
@@ -354,12 +354,8 @@
 <p>i = 2：temperatures[2] &gt; temperatures[1]，ret[1] = 2 - 1，stack=<code>[2]</code></p>
 <p>i = 3：temperatures[3] &lt; temperatures[2]，stack=<code>[2,3]</code></p>
 <p>i = 4：temperatures[4] &lt; temperatures[3]，stack=<code>[2,3,4]</code></p>
-<p>i = 5：temperatures[5] &gt; temperatures[4]，ret[4] = 1, stack=<code>[2, 3]</code></p>
-<p>​           temperatures[5] &gt; temperatures[3]，ret[3] = 2, stack=<code>[2]</code></p>
-<p>​           stack.push(5)，stack=<code>[2,5]</code></p>
-<p>i = 6：temperatures[6] &gt; temperatures[5]，ret[5] = 1，stack=<code>[2]</code></p>
-<p>​           temperatures[6] &gt; temperatures[2]，ret[2] = 4，stack=<code>[]</code></p>
-<p>​           stack.push(6)，stack=<code>[6]</code></p>
+<p>i = 5：temperatures[5] &gt; temperatures[4]，ret[4] = 1, stack=<code>[2, 3]</code>，temperatures[5] &gt; temperatures[3]，ret[3] = 2, stack=<code>[2]</code>， stack.push(5)，stack=<code>[2,5]</code></p>
+<p>i = 6：temperatures[6] &gt; temperatures[5]，ret[5] = 1，stack=<code>[2]</code>，temperatures[6] &gt; temperatures[2]，ret[2] = 4，stack=<code>[]</code>，stack.push(6)，stack=<code>[6]</code></p>
 <p>i = 7：temperatures[7] &lt; temperatures[6]</p>
 <p>循环结束：这里用到了java数组的一个特性，创建数组没有手动复制的话默认值为0</p>
 
@@ -379,9 +375,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/LeetCode/" rel="tag"># LeetCode</a>
-          
             <a href="/tags/Stack/" rel="tag"># Stack</a>
+          
+            <a href="/tags/LeetCode/" rel="tag"># LeetCode</a>
           
         </div>
       
