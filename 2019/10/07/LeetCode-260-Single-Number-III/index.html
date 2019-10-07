@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="广度优先遍历,bfs," />
+  <meta name="keywords" content="LeetCode,位操作," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="题目描述每个房间里有若干钥匙，钥匙能开对应房间的门，在0号房间不需要钥匙的情况下判断能否打开所有房间。 输入[[1],[2],[3],[]]，表示0号房间有一号房间的钥匙，1号房间有2号房间的钥匙，2号房间有3号房间的钥匙，3号房间没有钥匙。 广度优先遍历解法12345678910111213141516171819202122232425public class Problem841 &amp;#123">
-<meta name="keywords" content="广度优先遍历,bfs">
+<meta name="description" content="找出数组中只出现一次的两个数题目描述：输入一个整型数组，数组中只有两个数字只出现了一次，其他的数都出现了两次。要求找出那两个数字，对于输出结果的顺序没有要求，时间复杂度要求在线性时间且只使用常数空间 1. 用Map的解法这种方法比较直接，但是不符合线性时间和常数空间的要求。遍历的时候把每个数出现的次数存储到一个map中，再遍历一遍这个map找到出现次数为1的数即可。 123456789101112">
+<meta name="keywords" content="LeetCode,位操作">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode841 Keys and Rooms">
-<meta property="og:url" content="http://yoursite.com/2019/03/27/LeetCode841-Keys-and-Rooms/index.html">
+<meta property="og:title" content="LeetCode 260 Single Number III">
+<meta property="og:url" content="http://yoursite.com/2019/10/07/LeetCode-260-Single-Number-III/index.html">
 <meta property="og:site_name" content="何度でも">
-<meta property="og:description" content="题目描述每个房间里有若干钥匙，钥匙能开对应房间的门，在0号房间不需要钥匙的情况下判断能否打开所有房间。 输入[[1],[2],[3],[]]，表示0号房间有一号房间的钥匙，1号房间有2号房间的钥匙，2号房间有3号房间的钥匙，3号房间没有钥匙。 广度优先遍历解法12345678910111213141516171819202122232425public class Problem841 &amp;#123">
+<meta property="og:description" content="找出数组中只出现一次的两个数题目描述：输入一个整型数组，数组中只有两个数字只出现了一次，其他的数都出现了两次。要求找出那两个数字，对于输出结果的顺序没有要求，时间复杂度要求在线性时间且只使用常数空间 1. 用Map的解法这种方法比较直接，但是不符合线性时间和常数空间的要求。遍历的时候把每个数出现的次数存储到一个map中，再遍历一遍这个map找到出现次数为1的数即可。 123456789101112">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-27T07:11:43.319Z">
+<meta property="og:updated_time" content="2019-10-07T12:43:12.809Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LeetCode841 Keys and Rooms">
-<meta name="twitter:description" content="题目描述每个房间里有若干钥匙，钥匙能开对应房间的门，在0号房间不需要钥匙的情况下判断能否打开所有房间。 输入[[1],[2],[3],[]]，表示0号房间有一号房间的钥匙，1号房间有2号房间的钥匙，2号房间有3号房间的钥匙，3号房间没有钥匙。 广度优先遍历解法12345678910111213141516171819202122232425public class Problem841 &amp;#123">
+<meta name="twitter:title" content="LeetCode 260 Single Number III">
+<meta name="twitter:description" content="找出数组中只出现一次的两个数题目描述：输入一个整型数组，数组中只有两个数字只出现了一次，其他的数都出现了两次。要求找出那两个数字，对于输出结果的顺序没有要求，时间复杂度要求在线性时间且只使用常数空间 1. 用Map的解法这种方法比较直接，但是不符合线性时间和常数空间的要求。遍历的时候把每个数出现的次数存储到一个map中，再遍历一遍这个map找到出现次数为1的数即可。 123456789101112">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/27/LeetCode841-Keys-and-Rooms/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/10/07/LeetCode-260-Single-Number-III/"/>
 
 
 
 
 
-  <title>LeetCode841 Keys and Rooms | 何度でも</title>
+  <title>LeetCode 260 Single Number III | 何度でも</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/27/LeetCode841-Keys-and-Rooms/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/07/LeetCode-260-Single-Number-III/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="uzck">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">LeetCode841 Keys and Rooms</h1>
+          <h1 class="post-title" itemprop="name headline">LeetCode 260 Single Number III</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-27T10:47:06+08:00">
-                2019-03-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-07T20:13:43+08:00">
+                2019-10-07
               </time>
             
 
@@ -342,13 +342,12 @@
       
 
       
-        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>每个房间里有若干钥匙，钥匙能开对应房间的门，在0号房间不需要钥匙的情况下判断能否打开所有房间。</p>
-<p>输入<code>[[1],[2],[3],[]]</code>，表示0号房间有一号房间的钥匙，1号房间有2号房间的钥匙，2号房间有3号房间的钥匙，3号房间没有钥匙。</p>
-<h2 id="广度优先遍历解法"><a href="#广度优先遍历解法" class="headerlink" title="广度优先遍历解法"></a>广度优先遍历解法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Problem841</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] room;</span><br><span class="line">    Stack&lt;Integer&gt; keys;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">canVisitAllRooms</span><span class="params">(List&lt;List&lt;Integer&gt;&gt; rooms)</span> </span>&#123;</span><br><span class="line">        room = <span class="keyword">new</span> <span class="keyword">int</span>[rooms.size()];</span><br><span class="line">        keys = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        visitRoom(rooms, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">while</span>(!keys.isEmpty())&#123;</span><br><span class="line">            <span class="keyword">int</span> key = keys.pop();</span><br><span class="line">            <span class="keyword">if</span>(room[key] == <span class="number">0</span>) &#123;</span><br><span class="line">                visitRoom(rooms, key);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i : room) <span class="keyword">if</span>(i == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">visitRoom</span><span class="params">(List&lt;List&lt;Integer&gt;&gt; rooms, Integer roomNum)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> key: rooms.get(roomNum))&#123;</span><br><span class="line">            keys.push(key);</span><br><span class="line">        &#125;</span><br><span class="line">        room[roomNum] = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>思路是广度优先遍历外加额外的数组记录房间是否已经打开过，也可以用递归方法来写</p>
-<a id="more"></a>
-<h3 id="用字典实现"><a href="#用字典实现" class="headerlink" title="用字典实现"></a>用字典实现</h3><p>用dict或Set数据结构可以减少同一个房间的多个钥匙的遍历次数</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">canVisitAllRooms</span><span class="params">(rooms: List[List[int]])</span> -&gt; bool:</span></span><br><span class="line">    queue = &#123;&#125; <span class="comment"># 存储已经拥有的钥匙</span></span><br><span class="line">    new_keys = &#123;&#125; <span class="comment"># 每次新拥有的钥匙</span></span><br><span class="line">    new_key_copy = &#123;&#125; <span class="comment"># new_keys的拷贝</span></span><br><span class="line">    queue[<span class="string">'0'</span>] = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> rooms[<span class="number">0</span>]:</span><br><span class="line">        <span class="keyword">if</span> new_keys.get(i, <span class="number">-1</span>) == <span class="number">-1</span>: <span class="comment"># 这里是为了避免某个房间里有同一个房间的多个钥匙</span></span><br><span class="line">            new_keys[str(i)] = i </span><br><span class="line">            queue[str(i)] = i</span><br><span class="line">    <span class="keyword">while</span> len(queue) &lt; len(rooms): <span class="comment"># 如果已经拥有的钥匙数量少于房间数</span></span><br><span class="line">        has_new_key = <span class="keyword">False</span></span><br><span class="line">        new_key_copy = &#123;key:new_keys[key] <span class="keyword">for</span> key <span class="keyword">in</span> new_keys.keys()&#125;</span><br><span class="line">        new_keys.clear()</span><br><span class="line">        <span class="keyword">for</span> key <span class="keyword">in</span> new_key_copy.keys():</span><br><span class="line">            <span class="keyword">for</span> keys <span class="keyword">in</span> rooms[int(key)]:</span><br><span class="line">                <span class="keyword">if</span> keys == <span class="number">0</span>: <span class="comment"># 0号房不需要钥匙</span></span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                <span class="keyword">if</span> queue.get(str(keys), <span class="number">-1</span>) == <span class="number">-1</span>:</span><br><span class="line">                    new_keys[str(keys)] = keys <span class="comment"># 这次新拿到的钥匙</span></span><br><span class="line">                    queue[str(keys)] = keys <span class="comment"># 更新拥有的钥匙</span></span><br><span class="line">                    has_new_key = <span class="keyword">True</span> <span class="comment"># 本次拿到了新钥匙</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> has_new_key: <span class="comment"># 如果没新钥匙了就结束循环</span></span><br><span class="line">            <span class="keyword">break</span>        </span><br><span class="line">    <span class="keyword">if</span> len(queue) == len(rooms):</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br></pre></td></tr></table></figure>
+        <h2 id="找出数组中只出现一次的两个数"><a href="#找出数组中只出现一次的两个数" class="headerlink" title="找出数组中只出现一次的两个数"></a>找出数组中只出现一次的两个数</h2><p>题目描述：输入一个整型数组，数组中只有两个数字只出现了一次，其他的数都出现了两次。要求找出那两个数字，对于输出结果的顺序没有要求，时间复杂度要求在线性时间且只使用常数空间</p>
+<h3 id="1-用Map的解法"><a href="#1-用Map的解法" class="headerlink" title="1. 用Map的解法"></a>1. 用Map的解法</h3><p>这种方法比较直接，但是不符合线性时间和常数空间的要求。遍历的时候把每个数出现的次数存储到一个map中，再遍历一遍这个map找到出现次数为1的数即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 6ms 19.17% 遍历存到map里</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> nums</span></span><br><span class="line"><span class="comment">* <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] singleNumberMap(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">    Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i : nums) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!map.containsKey(i)) &#123;</span><br><span class="line">            map.put(i, <span class="number">1</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            map.put(i, map.get(i) + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</span><br><span class="line">    <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (Integer key : map.keySet()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (map.get(key) == <span class="number">1</span>) &#123;</span><br><span class="line">                res[index++] = key;</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-正确的解法"><a href="#2-正确的解法" class="headerlink" title="2. 正确的解法"></a>2. 正确的解法</h3><p>用到了<a href="https://leetcode.com/problems/single-number/" target="_blank" rel="noopener">LeetCode 136 Single Number</a>里用位运算的思想。</p>
+<p>这里有两个需要先了解的公式<code>A ^ 0 = A</code>和<code>A ^ A = 0</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 1ms 99.62%</span></span><br><span class="line"><span class="comment">* 位操作</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> nums</span></span><br><span class="line"><span class="comment">* <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] singleNumber(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">    <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</span><br><span class="line">    <span class="keyword">int</span> xor = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="comment">// 因为a ^ a = 0 所以遍历整个数组后剩下的值是两个只出现一次的数A^B</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        xor ^= nums[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 两个不同的数异或之后的二进制表示中 肯定至少存在一个1 xor &amp;= -xor来找到最后的一个1</span></span><br><span class="line">    <span class="comment">// 3(11) ^ 5(101) = 110</span></span><br><span class="line">    <span class="comment">// 负数的二进制表示里是先对正数的二进制求反之后再+1 也就是用补码表示</span></span><br><span class="line">    <span class="comment">// 110 &amp; (10) = 010</span></span><br><span class="line">    xor &amp;= -xor;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : nums) &#123;</span><br><span class="line">        <span class="comment">// i &amp;&amp; xor == 0 说明i的后面位和xor一样</span></span><br><span class="line">        <span class="comment">// 重复的数字因为成对出现 在做异或操作之后还是会变为0</span></span><br><span class="line">        <span class="comment">// 任何数 ^ 0 = 本身</span></span><br><span class="line">        <span class="keyword">if</span> ((i &amp; xor) == <span class="number">0</span>) &#123;</span><br><span class="line">            res[<span class="number">0</span>] ^= i;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            res[<span class="number">1</span>] ^= i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -366,9 +365,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/广度优先遍历/" rel="tag"># 广度优先遍历</a>
+            <a href="/tags/LeetCode/" rel="tag"># LeetCode</a>
           
-            <a href="/tags/bfs/" rel="tag"># bfs</a>
+            <a href="/tags/位操作/" rel="tag"># 位操作</a>
           
         </div>
       
@@ -381,8 +380,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/26/LeetCode797-Find-All-Paths-From-Source-to-Target/" rel="next" title="LeetCode797 Find All Paths From Source to Target">
-                <i class="fa fa-chevron-left"></i> LeetCode797 Find All Paths From Source to Target
+              <a href="/2019/03/27/LeetCode442-Find-All-Duplicate-in-an-Array/" rel="next" title="LeetCode442 Find All Duplicate in an Array">
+                <i class="fa fa-chevron-left"></i> LeetCode442 Find All Duplicate in an Array
               </a>
             
           </div>
@@ -390,10 +389,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/27/LeetCode442-Find-All-Duplicate-in-an-Array/" rel="prev" title="LeetCode442 Find All Duplicate in an Array">
-                LeetCode442 Find All Duplicate in an Array <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -525,7 +520,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#广度优先遍历解法"><span class="nav-number">2.</span> <span class="nav-text">广度优先遍历解法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用字典实现"><span class="nav-number">2.1.</span> <span class="nav-text">用字典实现</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#找出数组中只出现一次的两个数"><span class="nav-number">1.</span> <span class="nav-text">找出数组中只出现一次的两个数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-用Map的解法"><span class="nav-number">1.1.</span> <span class="nav-text">1. 用Map的解法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-正确的解法"><span class="nav-number">1.2.</span> <span class="nav-text">2. 正确的解法</span></a></li></ol></li></ol></div>
             
 
           </div>
