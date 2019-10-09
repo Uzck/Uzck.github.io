@@ -249,6 +249,156 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/09/LeetCode-200-Number-of-Islands/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="uzck">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="何度でも">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/09/LeetCode-200-Number-of-Islands/" itemprop="url">LeetCode 200 Number of Islands</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-09T11:42:03+08:00">
+                2019-10-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据结构与算法/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构与算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="小岛的数量"><a href="#小岛的数量" class="headerlink" title="小岛的数量"></a>小岛的数量</h2><p>题目描述：输入一个为二维的格子，格子中<code>&#39;1&#39;</code>代表岛，<code>&#39;0&#39;</code>代表水，计算格子中小岛的数量。被水包围的才算岛，假定格子的四边都是水。</p>
+<h3 id="深度优先搜索"><a href="#深度优先搜索" class="headerlink" title="深度优先搜索"></a>深度优先搜索</h3><p>这题本质上是求矩阵中连续区域的个数，只需要从<code>&#39;1&#39;</code>开始找到所有的连通区域即可。时间复杂度O(MN)，空间复杂度O(1)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numIslands</span><span class="params">(<span class="keyword">char</span>[][] grid)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (grid == <span class="keyword">null</span> || grid.length == <span class="number">0</span> || grid[<span class="number">0</span>].length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> n = grid.length; <span class="comment">// 行数</span></span><br><span class="line">    <span class="keyword">int</span> m = grid[<span class="number">0</span>].length; <span class="comment">// 列数</span></span><br><span class="line">    <span class="keyword">int</span> result = <span class="number">0</span>; <span class="comment">// 返回结果</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; m; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (grid[i][j] == <span class="string">'1'</span>) &#123;</span><br><span class="line">                dfs(grid, i, j);</span><br><span class="line">                result++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span> <span class="params">(<span class="keyword">char</span>[][] grid, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 处理越界的情况</span></span><br><span class="line">    <span class="keyword">if</span> (i &lt; <span class="number">0</span> || i &gt;= grid.length || j &lt; <span class="number">0</span> || j &gt;= grid[<span class="number">0</span>].length) <span class="keyword">return</span>;</span><br><span class="line">    <span class="comment">// 如果当前位置属于小岛，递归搜索附近四个方向的区域 </span></span><br><span class="line">    <span class="keyword">if</span> (grid[i][j] == <span class="string">'1'</span>) &#123;</span><br><span class="line">        <span class="comment">// 置0 避免重复陷入死循环</span></span><br><span class="line">        grid[i][j] = <span class="string">'0'</span>;</span><br><span class="line">        <span class="comment">// 搜索四个方向</span></span><br><span class="line">        dfs (grid, i + <span class="number">1</span>, j);</span><br><span class="line">        dfs (grid, i - <span class="number">1</span>, j);</span><br><span class="line">        dfs (grid, i, j + <span class="number">1</span>);</span><br><span class="line">        dfs (grid, i, j - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这题还可以用一个<strong>visited</strong>数组来代替<code>grid[i][j] = &#39;0&#39;</code>作为该位置的数据已经访问过的标志，其他的思路一致。时间复杂度仍然是O(MN)，空间复杂度O(MN)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numIslands</span><span class="params">(<span class="keyword">char</span>[][] grid)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (grid == <span class="keyword">null</span> || grid.length == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> m = grid.length, n = grid[<span class="number">0</span>].length;</span><br><span class="line">    <span class="keyword">int</span>[][] visited = <span class="keyword">new</span> <span class="keyword">int</span>[m][n];</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j, res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(; i &lt; m; i++) &#123;</span><br><span class="line">        j = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> ( ; j &lt; n; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (grid[i][j] == <span class="string">'0'</span> || visited[i][j] == <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            check(i, j, m, n, visited, grid);</span><br><span class="line">            res += <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="keyword">int</span> m, <span class="keyword">int</span> n, <span class="keyword">int</span>[][] visited, <span class="keyword">char</span>[][] grid)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i &lt; <span class="number">0</span> || i &gt;= m || j &lt; <span class="number">0</span> || j &gt;= n || visited[i][j] == <span class="number">1</span> || grid[i][j] == <span class="string">'0'</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    visited[i][j] = <span class="number">1</span>;</span><br><span class="line">    check(i-<span class="number">1</span>, j, m, n, visited, grid);</span><br><span class="line">    check(i+<span class="number">1</span>, j, m, n, visited, grid);</span><br><span class="line">    check(i, j-<span class="number">1</span>, m, n, visited, grid);</span><br><span class="line">    check(i, j+<span class="number">1</span>, m, n, visited, grid);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/10/09/LeetCode-200-Number-of-Islands/#espandi" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/08/LeetCode-75-Sort-Colors/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -915,7 +1065,7 @@
 <p>思路是广度优先遍历外加额外的数组记录房间是否已经打开过，也可以用递归方法来写</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/03/27/LeetCode841-Keys-and-Rooms/#more" rel="contents">
+            <a class="btn" href="/2019/03/27/LeetCode841-Keys-and-Rooms/#espandi" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1065,7 +1215,7 @@
 <h3 id="1-递归法"><a href="#1-递归法" class="headerlink" title="1. 递归法"></a>1. 递归法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 递归dfs</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> graph</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; allPathsSourceTargetRecursion(<span class="keyword">int</span>[][] graph) &#123;</span><br><span class="line">    List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> ArrayList();</span><br><span class="line">    backTracking(res, <span class="number">0</span>, graph.length, graph, <span class="keyword">new</span> ArrayList());</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">backTracking</span><span class="params">(List&lt;List&lt;Integer&gt;&gt; res, <span class="keyword">int</span> currPos, <span class="keyword">int</span> N,<span class="keyword">int</span>[][] graph, List&lt;Integer&gt; path)</span> </span>&#123;</span><br><span class="line">    path.add(currPos);</span><br><span class="line">    <span class="keyword">if</span> (currPos == N - <span class="number">1</span>) &#123;</span><br><span class="line">        res.add(<span class="keyword">new</span> ArrayList(path));</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> neighbor : graph[currPos]) &#123;</span><br><span class="line">        backTracking(res, neighbor, N, graph, path);</span><br><span class="line">        path.remove(path.size() - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/03/26/LeetCode797-Find-All-Paths-From-Source-to-Target/#more" rel="contents">
+            <a class="btn" href="/2019/03/26/LeetCode797-Find-All-Paths-From-Source-to-Target/#espandi" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1212,7 +1362,7 @@
 <h2 id="蒟蒻的解法"><a href="#蒟蒻的解法" class="headerlink" title="蒟蒻的解法"></a>蒟蒻的解法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] dailyTemperatures(<span class="keyword">int</span>[] T) &#123;</span><br><span class="line">	<span class="keyword">int</span>[] result = <span class="keyword">new</span> <span class="keyword">int</span>[T.length];  <span class="comment">// 存储最后结果</span></span><br><span class="line">    <span class="comment">// tempData在搜索比自身大的数可以按顺序搜索</span></span><br><span class="line">    <span class="keyword">int</span>[] tempData = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">71</span>]; <span class="comment">// 长度71是因为数据范围是30-100，里面存储每个数最近一次出现时的下标</span></span><br><span class="line">    <span class="keyword">int</span>[] resultCopy = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">71</span>]; <span class="comment">// 存储对应数据的结果值</span></span><br><span class="line">    <span class="comment">// 初始化</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; tempData.length; i++) &#123;</span><br><span class="line">        tempData[i] = -<span class="number">1</span>;</span><br><span class="line">        resultCopy[i] = -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; T.length; i++) &#123;</span><br><span class="line">        <span class="comment">// 如果该数值还未在tempData中出现过</span></span><br><span class="line">        <span class="keyword">if</span> (tempData[T[i] - <span class="number">30</span>] &lt;  i)  &#123;</span><br><span class="line">            tempData[T[i] - <span class="number">30</span>] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 处理大多数数字相同的情况[76,76.......]，没添加的时候超时了(真滴菜)</span></span><br><span class="line">        <span class="keyword">if</span> (resultCopy[T[i] - <span class="number">30</span>] == <span class="number">0</span>) &#123;</span><br><span class="line">            result[i] = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 找到相同数值的数的结果，如果大于当前值的下标时，将其作为搜索时的终止条件</span></span><br><span class="line">        <span class="keyword">if</span> (resultCopy[T[i]- <span class="number">30</span>] &gt; i) &#123;</span><br><span class="line">            result[i] = resultCopy[T[i] - <span class="number">30</span>] - i;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 如果该数值之前没有出现过,从这个数的位置到tempData末端寻找之前出现过大于它且下标也大于它的最近的数</span></span><br><span class="line">        <span class="comment">// -1表示不存在</span></span><br><span class="line">        <span class="keyword">int</span> getBigNumIndex = getBiggerNum(tempData, T[i], i, tempData.length - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span> (getBigNumIndex != -<span class="number">1</span>) &#123;</span><br><span class="line">            result[i] = getBigNumIndex - i;</span><br><span class="line">            resultCopy[T[i] - <span class="number">30</span>] = getBigNumIndex;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 不存在的情况下去原数组往后搜索第一个大于该数的值的下标作为结果</span></span><br><span class="line">            <span class="keyword">boolean</span> findBig = <span class="keyword">false</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; T.length; j++) &#123;</span><br><span class="line">                tempData[T[j] - <span class="number">30</span>] = j;</span><br><span class="line">                <span class="keyword">if</span> (T[j] &gt; T[i]) &#123;</span><br><span class="line">                    result[i] = j - i;</span><br><span class="line">                    resultCopy[T[i] - <span class="number">30</span>] = j;</span><br><span class="line">                    findBig = <span class="keyword">true</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 没找到比它大的置0</span></span><br><span class="line">            <span class="keyword">if</span> (!findBig) &#123;</span><br><span class="line">            	result[i] = <span class="number">0</span>;</span><br><span class="line">                resultCopy[T[i] - <span class="number">30</span>] = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 在source中的start和end范围内找最近的比target大的数</span></span><br><span class="line"><span class="comment">**/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getBiggerNum</span><span class="params">(<span class="keyword">int</span>[] source, <span class="keyword">int</span> target, <span class="keyword">int</span> start, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> minMax = -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = target - <span class="number">30</span>; i &lt;= end; i++) &#123;</span><br><span class="line">    	<span class="keyword">if</span> (source[i] &gt; start) &#123;</span><br><span class="line">        	<span class="keyword">if</span> (minMax &gt; source[i]) &#123;</span><br><span class="line">            	minMax = source[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> minMax;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/03/20/LeetCode739-Daily-Temperatures/#more" rel="contents">
+            <a class="btn" href="/2019/03/20/LeetCode739-Daily-Temperatures/#espandi" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1361,7 +1511,7 @@
 <p>很简单，每次找出该区间的最大值，再分别找出两边区间的最大值。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/03/10/LeetCode-Problem654/#more" rel="contents">
+            <a class="btn" href="/2019/03/10/LeetCode-Problem654/#espandi" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1543,155 +1693,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/16/Problem876-Middle-of-the-Linked-List/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="uzck">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="何度でも">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/16/Problem876-Middle-of-the-Linked-List/" itemprop="url">LeetCode876 Middle of the Linked List</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-16T10:54:28+08:00">
-                2019-01-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据结构与算法/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构与算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>题目原意是找一个链表的中间结点，如果中间结点有两个，取靠后的那个</p>
-<h2 id="沙雕解法"><a href="#沙雕解法" class="headerlink" title="沙雕解法"></a>沙雕解法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ListNode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> val;</span><br><span class="line">    <span class="keyword">public</span> ListNode next;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ListNode</span><span class="params">(<span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.val = val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>给定的是结点数据结构是这样的，因此不能直接用Java里的ArrayList.get(list.size() / 2)这样的方法，我想到的方法就是先遍历一次链表，得到长度，得到中间结点的位置，再迭代，得到中间结点。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">middleNode</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    ListNode tmpListNode = head;</span><br><span class="line">    <span class="keyword">int</span> index = <span class="number">0</span>, middle;</span><br><span class="line">    <span class="keyword">while</span> (tmpListNode != <span class="keyword">null</span>) &#123;</span><br><span class="line">        index += <span class="number">1</span>;</span><br><span class="line">        tmpListNode = tmpListNode.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (index % <span class="number">2</span> == <span class="number">0</span>) &#123;</span><br><span class="line">        middle = (<span class="keyword">int</span>) Math.floor(index / <span class="number">2</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        middle = index / <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (middle &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        head = head.next;</span><br><span class="line">        middle--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/01/16/Problem876-Middle-of-the-Linked-List/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1742,7 +1743,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1764,7 +1765,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
